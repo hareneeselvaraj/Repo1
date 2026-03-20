@@ -1,0 +1,281 @@
+1. CONTEXT (MANDATORY)
+
+You are enhancing an existing DWM UX with:
+
+Boards (T1/T2/T3)
+
+KPI Detail Panel
+
+Abnormality View
+
+Action Management
+
+Meeting Workspace
+
+NEW REQUIREMENT
+
+Introduce TQM-compliant abnormality handling:
+
+Classify every abnormality at closure
+
+Capture justification for one-off cases
+
+Detect repeat patterns
+
+Enable controlled escalation to RCA (1.6)
+
+⚠️ CORE UX PRINCIPLE
+Every abnormality must end with a decision.
+🚫 2. WHAT YOU MUST NOT DO
+
+❌ Do NOT:
+
+Allow closing abnormality without classification
+
+Create standalone “issue forms”
+
+Add complex workflow screens
+
+Overload operator UI
+
+✅ 3. WHERE THIS UX LIVES
+Primary Locations:
+
+KPI Detail Panel → Abnormality Tab
+
+Action Closure Panel
+
+Meeting Workspace (Decision moment)
+
+🧩 4. ABNORMALITY PANEL — UPDATED DESIGN
+Component Name
+
+AbnormalityDetailPanel
+
+Layout
+-----------------------------------------
+| Abnormality                          |
+-----------------------------------------
+| Type: Threshold Breach              |
+| Severity: Critical                  |
+| Detected: 10:30 AM                  |
+-----------------------------------------
+| Linked KPI                          |
+| Linked Actions                      |
+-----------------------------------------
+| Status: Open / In Progress          |
+-----------------------------------------
+| [Close Abnormality]  (Primary CTA)  |
+-----------------------------------------
+🔷 5. CLOSE ABNORMALITY FLOW (CRITICAL)
+On Click: Close Abnormality
+
+Open modal / drawer:
+
+-----------------------------------------
+| Close Abnormality                    |
+-----------------------------------------
+| Disposition:                         |
+| ( ) One-off                         |
+| ( ) Monitor                         |
+| ( ) Escalate to RCA                 |
+-----------------------------------------
+| Justification (Required*)           |
+| [ Text Input ]                      |
+-----------------------------------------
+| [Submit]                            |
+-----------------------------------------
+Rules (MANDATORY)
+Condition	Behavior
+No selection	Disable submit
+One-off / Monitor	Justification required
+Escalate to RCA	No justification required
+🧠 6. DISPOSITION OPTIONS — UX MEANING
+One-off
+
+Rare, known cause
+
+No further action
+
+👉 UX:
+
+Close immediately
+
+Capture justification
+
+Monitor
+
+Suspicious
+
+Might repeat
+
+👉 UX:
+
+Add soft flag
+
+Track recurrence
+
+Escalate to RCA
+
+Repeat / critical
+
+👉 UX:
+
+Trigger 1.6 flow
+
+Convert to Improvement Case
+
+🔁 7. REPEAT DETECTION UX
+Where to Show
+
+👉 Inside Abnormality Panel
+
+Visual Indicator
+⚠ Repeated 3 times in last 7 days
+[ Suggest RCA ]
+Behavior
+
+Highlight abnormality
+
+Suggest escalation
+
+Do NOT auto-escalate
+
+🏷 8. KPI PANEL AUGMENTATION
+Add Indicators:
+-----------------------------------------
+| KPI: Temperature                     |
+| Value: 82 / 75 🔴                   |
+| ⚠ Repeated Issues (3)               |
+-----------------------------------------
+Icons
+
+🔁 Repeat
+
+⚠ Warning
+
+🔴 Critical
+
+🔧 9. ACTION PANEL UPDATE
+When closing last action:
+
+👉 Prompt:
+
+All actions completed.
+Do you want to close the abnormality?
+
+Then trigger:
+
+👉 Disposition Flow
+
+👥 10. MEETING WORKSPACE UPDATE
+Add Section:
+-----------------------------------------
+| Abnormalities Pending Closure         |
+-----------------------------------------
+| KPI | Issue | Disposition | Action    |
+-----------------------------------------
+Behavior:
+
+Force decision during meeting
+
+Allow:
+
+Close as One-off
+
+Mark Monitor
+
+Escalate to RCA
+
+🔗 11. RCA TRIGGER UX (BRIDGE TO 1.6)
+When “Escalate to RCA” selected:
+Show:
+Create Improvement Case?
+[Yes] [Cancel]
+Pre-fill:
+
+KPI
+
+Context
+
+Abnormality details
+
+Actions taken
+
+🎨 12. VISUAL DESIGN GUIDELINES
+Keep it:
+
+Minimal
+
+Decision-focused
+
+Fast interaction
+
+Highlight:
+
+Disposition selection clearly
+
+Repeat warnings visually
+
+Avoid:
+
+Long forms
+
+Multiple steps
+
+Heavy documentation UI
+
+⚠️ 13. UX ANTI-PATTERNS
+
+❌ Closing abnormality without classification
+❌ Auto-RCA creation
+❌ Too many fields
+❌ Separate “issue module”
+
+🧠 14. USER EXPERIENCE GOAL
+
+User should:
+
+See issue → Fix → Decide → Close or Escalate
+✅ 15. SUCCESS CRITERIA
+
+UX is correct if:
+
+Every abnormality has a disposition
+
+One-off cases are easy to close
+
+Repeat issues are clearly visible
+
+RCA is triggered only when needed
+
+No extra cognitive load
+
+🚀 16. DELIVERABLES FOR FIGMA
+Screens to Update
+
+KPI Detail Panel (Abnormality tab)
+
+Action Closure Flow
+
+Meeting Workspace
+
+KPI Cell (minor indicator)
+
+Components to Create
+
+Disposition Selector
+
+Repeat Indicator
+
+RCA Trigger Dialog
+
+Justification Input
+
+🔥 FINAL INSTRUCTION
+
+Maintain:
+
+👉 Execution simplicity
+👉 Add decision discipline
+👉 Enable intelligent escalation

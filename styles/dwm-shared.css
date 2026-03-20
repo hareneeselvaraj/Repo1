@@ -1,0 +1,339 @@
+/* ─── DWM Platform – Shared CSS ─────────────────────────────────────────────
+   Import this file once at the app root.
+   Contains: design tokens, status badges, ownership card, context chips,
+             type chips, severity indicators – shared across all options.
+   ─────────────────────────────────────────────────────────────────────────── */
+
+/* ── Design Tokens ── */
+:root {
+  --dwm-font: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+
+  /* Brand */
+  --dwm-blue-50:  #eff6ff;
+  --dwm-blue-100: #dbeafe;
+  --dwm-blue-500: #3b82f6;
+  --dwm-blue-600: #2563eb;
+  --dwm-blue-700: #1d4ed8;
+  --dwm-blue-800: #1e40af;
+  --dwm-blue-900: #1e3a8a;
+
+  /* Status palette */
+  --dwm-draft-bg:    #f3f4f6; --dwm-draft-fg:    #374151; --dwm-draft-border:    #d1d5db;
+  --dwm-sub-bg:      #eff6ff; --dwm-sub-fg:      #1d4ed8; --dwm-sub-border:      #93c5fd;
+  --dwm-review-bg:   #fffbeb; --dwm-review-fg:   #92400e; --dwm-review-border:   #fcd34d;
+  --dwm-approved-bg: #ecfdf5; --dwm-approved-fg: #065f46; --dwm-approved-border: #6ee7b7;
+  --dwm-effect-bg:   #dcfce7; --dwm-effect-fg:   #14532d; --dwm-effect-border:   #4ade80;
+  --dwm-active-bg:   #dcfce7; --dwm-active-fg:   #14532d; --dwm-active-border:   #4ade80;
+  --dwm-retired-bg:  #f1f5f9; --dwm-retired-fg:  #475569; --dwm-retired-border:  #cbd5e1;
+  --dwm-super-bg:    #f5f3ff; --dwm-super-fg:    #5b21b6; --dwm-super-border:    #c4b5fd;
+  --dwm-gap-bg:      #fef2f2; --dwm-gap-fg:      #991b1b; --dwm-gap-border:      #fca5a5;
+  --dwm-blocked-bg:  #fef2f2; --dwm-blocked-fg:  #991b1b; --dwm-blocked-border:  #f87171;
+
+  /* Severity */
+  --dwm-sev-high:   #dc2626;
+  --dwm-sev-medium: #d97706;
+  --dwm-sev-low:    #6b7280;
+
+  /* Surface */
+  --dwm-surface:        #ffffff;
+  --dwm-surface-subtle: #f8fafc;
+  --dwm-border:         #e2e8f0;
+  --dwm-border-light:   #f1f5f9;
+
+  /* Text */
+  --dwm-text-primary:   #0f172a;
+  --dwm-text-secondary: #475569;
+  --dwm-text-muted:     #94a3b8;
+
+  /* Radius */
+  --dwm-r-sm: 3px;
+  --dwm-r-md: 6px;
+  --dwm-r-lg: 8px;
+
+  /* Shadows */
+  --dwm-shadow-xs: 0 1px 2px rgba(0,0,0,0.05);
+  --dwm-shadow-sm: 0 2px 6px rgba(0,0,0,0.07);
+  --dwm-shadow-md: 0 4px 12px rgba(0,0,0,0.10);
+}
+
+/* ── Global Base ── */
+.dwm-root {
+  font-family: var(--dwm-font);
+  font-size: 13px;
+  line-height: 1.5;
+  color: var(--dwm-text-primary);
+  background: var(--dwm-surface-subtle);
+  display: flex;
+  height: 100vh;
+  overflow: hidden;
+}
+
+/* ─────────────────────────────────────────────────────
+   STATUS BADGE
+   ───────────────────────────────────────────────────── */
+.dwm-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 2px 7px;
+  border-radius: var(--dwm-r-sm);
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0.02em;
+  border: 1px solid transparent;
+  white-space: nowrap;
+  line-height: 1.6;
+}
+
+.dwm-badge-draft        { background: var(--dwm-draft-bg);    color: var(--dwm-draft-fg);    border-color: var(--dwm-draft-border); }
+.dwm-badge-submitted    { background: var(--dwm-sub-bg);      color: var(--dwm-sub-fg);      border-color: var(--dwm-sub-border); }
+.dwm-badge-under-review { background: var(--dwm-review-bg);   color: var(--dwm-review-fg);   border-color: var(--dwm-review-border); }
+.dwm-badge-approved     { background: var(--dwm-approved-bg); color: var(--dwm-approved-fg); border-color: var(--dwm-approved-border); }
+.dwm-badge-effective    { background: var(--dwm-effect-bg);   color: var(--dwm-effect-fg);   border-color: var(--dwm-effect-border); }
+.dwm-badge-active       { background: var(--dwm-active-bg);   color: var(--dwm-active-fg);   border-color: var(--dwm-active-border); }
+.dwm-badge-retired      { background: var(--dwm-retired-bg);  color: var(--dwm-retired-fg);  border-color: var(--dwm-retired-border); }
+.dwm-badge-superseded   { background: var(--dwm-super-bg);    color: var(--dwm-super-fg);    border-color: var(--dwm-super-border); }
+.dwm-badge-ownership-gap{ background: var(--dwm-gap-bg);      color: var(--dwm-gap-fg);      border-color: var(--dwm-gap-border); }
+.dwm-badge-blocked      { background: var(--dwm-blocked-bg);  color: var(--dwm-blocked-fg);  border-color: var(--dwm-blocked-border); }
+
+/* ─────────────────────────────────────────────────────
+   OBJECT TYPE CHIP
+   ───────────────────────────────────────────────────── */
+.dwm-type-chip {
+  display: inline-block;
+  padding: 1px 6px;
+  border-radius: var(--dwm-r-sm);
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.03em;
+  text-transform: uppercase;
+}
+.dwm-type-sop        { background: #eff6ff; color: #1e40af; }
+.dwm-type-pfc        { background: #f0fdf4; color: #15803d; }
+.dwm-type-measure    { background: #fdf4ff; color: #7e22ce; }
+.dwm-type-role-sheet { background: #fff7ed; color: #c2410c; }
+.dwm-type-process    { background: #f0f9ff; color: #0369a1; }
+
+/* ─────────────────────────────────────────────────────
+   SEVERITY INDICATOR
+   ───────────────────────────────────────────────────── */
+.dwm-sev-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  display: inline-block;
+  flex-shrink: 0;
+}
+.dwm-sev-dot.high   { background: var(--dwm-sev-high); }
+.dwm-sev-dot.medium { background: var(--dwm-sev-medium); }
+.dwm-sev-dot.low    { background: var(--dwm-sev-low); }
+
+.dwm-sev-bar {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  font-size: 11px;
+}
+.dwm-sev-bar.high   { color: var(--dwm-sev-high); }
+.dwm-sev-bar.medium { color: var(--dwm-sev-medium); }
+.dwm-sev-bar.low    { color: var(--dwm-sev-low); }
+
+/* ─────────────────────────────────────────────────────
+   OWNERSHIP CARD
+   ───────────────────────────────────────────────────── */
+.dwm-ownership-card {
+  background: var(--dwm-surface-subtle);
+  border: 1px solid var(--dwm-border);
+  border-radius: var(--dwm-r-md);
+  padding: 10px 12px;
+}
+.dwm-ownership-card .oc-label {
+  font-size: 10px;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--dwm-text-muted);
+  margin-bottom: 2px;
+}
+.dwm-ownership-card .oc-position {
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--dwm-text-primary);
+}
+.dwm-ownership-card .oc-person {
+  font-size: 12px;
+  color: var(--dwm-text-secondary);
+  margin-top: 1px;
+}
+.dwm-ownership-card .oc-context {
+  font-size: 11px;
+  color: var(--dwm-text-muted);
+  margin-top: 3px;
+}
+
+/* ─────────────────────────────────────────────────────
+   CONTEXT CHIP  (selector bar items)
+   ───────────────────────────────────────────────────── */
+.dwm-ctx-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 3px 10px;
+  background: #ffffff;
+  border: 1px solid var(--dwm-border);
+  border-radius: var(--dwm-r-sm);
+  font-size: 12px;
+  color: var(--dwm-text-secondary);
+  cursor: pointer;
+  user-select: none;
+  transition: border-color 0.15s, background 0.15s;
+}
+.dwm-ctx-chip:hover { border-color: var(--dwm-blue-500); background: var(--dwm-blue-50); }
+.dwm-ctx-chip .ctx-label { color: var(--dwm-text-muted); font-size: 11px; }
+.dwm-ctx-chip .ctx-value { font-weight: 500; color: var(--dwm-text-primary); }
+.dwm-ctx-chip .ctx-arrow  { color: var(--dwm-text-muted); font-size: 10px; }
+
+/* ─────────────────────────────────────────────────────
+   PANEL CARD  (reusable white card)
+   ───────────────────────────────────────────────────── */
+.dwm-panel {
+  background: var(--dwm-surface);
+  border: 1px solid var(--dwm-border);
+  border-radius: var(--dwm-r-lg);
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+.dwm-panel-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px 14px;
+  border-bottom: 1px solid var(--dwm-border-light);
+  gap: 8px;
+}
+.dwm-panel-header .ph-title {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--dwm-text-primary);
+}
+.dwm-panel-header .ph-count {
+  background: var(--dwm-surface-subtle);
+  border: 1px solid var(--dwm-border);
+  border-radius: 10px;
+  padding: 0 7px;
+  font-size: 11px;
+  color: var(--dwm-text-secondary);
+}
+.dwm-panel-header .ph-action {
+  font-size: 11px;
+  color: var(--dwm-blue-600);
+  cursor: pointer;
+  background: none;
+  border: none;
+  padding: 0;
+  text-decoration: none;
+}
+.dwm-panel-header .ph-action:hover { text-decoration: underline; }
+.dwm-panel-body { flex: 1; overflow-y: auto; }
+
+/* ─────────────────────────────────────────────────────
+   COMPACT TABLE
+   ───────────────────────────────────────────────────── */
+.dwm-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 12px;
+}
+.dwm-table thead th {
+  padding: 7px 12px;
+  text-align: left;
+  font-size: 10px;
+  font-weight: 600;
+  color: var(--dwm-text-muted);
+  background: var(--dwm-surface-subtle);
+  border-bottom: 1px solid var(--dwm-border);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  white-space: nowrap;
+}
+.dwm-table tbody tr {
+  border-bottom: 1px solid var(--dwm-border-light);
+  cursor: pointer;
+  transition: background 0.1s;
+}
+.dwm-table tbody tr:hover { background: #fafbfc; }
+.dwm-table tbody td {
+  padding: 8px 12px;
+  color: var(--dwm-text-secondary);
+  vertical-align: middle;
+}
+.dwm-table tbody td .td-primary   { font-weight: 500; color: var(--dwm-text-primary); font-size: 12px; }
+.dwm-table tbody td .td-secondary { color: var(--dwm-text-muted); font-size: 11px; }
+
+/* ─────────────────────────────────────────────────────
+   AVATAR
+   ───────────────────────────────────────────────────── */
+.dwm-avatar {
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  background: var(--dwm-blue-800);
+  color: #fff;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 11px;
+  font-weight: 600;
+  flex-shrink: 0;
+}
+.dwm-avatar.sm  { width: 24px; height: 24px; font-size: 10px; }
+.dwm-avatar.lg  { width: 36px; height: 36px; font-size: 13px; }
+
+/* ─────────────────────────────────────────────────────
+   BUTTON UTILITIES
+   ───────────────────────────────────────────────────── */
+.dwm-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  padding: 5px 12px;
+  border-radius: var(--dwm-r-md);
+  font-size: 12px;
+  font-weight: 500;
+  cursor: pointer;
+  border: 1px solid transparent;
+  transition: all 0.15s;
+  white-space: nowrap;
+  font-family: var(--dwm-font);
+}
+.dwm-btn-primary {
+  background: var(--dwm-blue-600);
+  color: #fff;
+  border-color: var(--dwm-blue-700);
+}
+.dwm-btn-primary:hover { background: var(--dwm-blue-700); }
+
+.dwm-btn-ghost {
+  background: transparent;
+  color: var(--dwm-text-secondary);
+  border-color: var(--dwm-border);
+}
+.dwm-btn-ghost:hover { background: var(--dwm-surface-subtle); }
+
+.dwm-btn-danger {
+  background: #fee2e2;
+  color: #dc2626;
+  border-color: #fca5a5;
+}
+.dwm-btn-danger:hover { background: #fecaca; }
+
+/* ─────────────────────────────────────────────────────
+   SCROLLBAR  (thin, subtle)
+   ───────────────────────────────────────────────────── */
+.dwm-root *::-webkit-scrollbar { width: 5px; height: 5px; }
+.dwm-root *::-webkit-scrollbar-track { background: transparent; }
+.dwm-root *::-webkit-scrollbar-thumb { background: #d1d5db; border-radius: 3px; }
+.dwm-root *::-webkit-scrollbar-thumb:hover { background: #9ca3af; }
