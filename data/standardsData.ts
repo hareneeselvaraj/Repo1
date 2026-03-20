@@ -8,7 +8,7 @@ export interface Process {
   criticality: "Critical" | "High" | "Medium" | "Low";
   ownerPosition: string;
   resolvedOwner: string;
-  status: "Draft" | "Approved" | "Effective" | "Superseded" | "Retired";
+  status: "Draft" | "Approved" | "Effective" | "Superseded" | "Retired" | "Under Review";
   linkedPFCs: number;
   linkedSOPs: number;
   linkedMeasures: number;
